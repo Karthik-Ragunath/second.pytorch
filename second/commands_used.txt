@@ -1,0 +1,15 @@
+python create_data.py nuscenes_data_prep --root_path=/media/karthikragunath/Personal-Data/nuScenesData --version="v1.0-mini" --max_sweeps=10 --dataset_name="NuScenesDataset"
+
+python create_data.py nuscenes_data_prep --data_path=/media/karthikragunath/Personal-Data/nuScenesData --version="v1.0-mini" --max_sweeps=10 --dataset_name="NuScenesDataset"
+
+export PYTHONPATH=/home/karthikragunath/ComputerVision/Object_Detection/second.pytorch
+conda install -c conda-forge numpy==1.20
+python ./pytorch/train.py train --config_path=/home/karthikragunath/ComputerVision/Object_Detection/second.pytorch/second/configs/nuscenes/all.pp.mhead.config --model_dir=/home/karthikragunath/ComputerVision/Object_Detection/second.pytorch/second/trained_model
+
+python ./pytorch/train.py evaluate --config_path=/home/karthikragunath/ComputerVision/Object_Detection/second.pytorch/second/configs/nuscenes/all.pp.mhead.config --model_dir=/home/karthikragunath/ComputerVision/Object_Detection/second.pytorch/second/trained_model --measure_time=True --batch_size=1
+
+export PATH=/home/karthikragunath/anaconda3/envs/nuScenes/lib/cmake:$PATH
+
+export CUDACXX=/usr/local/cuda-11.5/bin/nvcc
+export CUDNN_LIBRARY_PATH=/usr/local/cuda-11.5/lib64
+export CUDNN_INCLUDE_PATH=/usr/local/cuda-11.5/include
